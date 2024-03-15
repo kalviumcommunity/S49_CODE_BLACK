@@ -29,4 +29,5 @@ ___
 - [ ] Providing:- a brief description to Every language listed on the website.
 
 ---
-## ***Deployed Link :*** {`https://code-black.onrender.com/ping`}
+## ***Deployed BACKEND Link :*** {`https://code-black.onrender.com/ping`}
+## ***Deployed FRONTEND Link :*** {`https://49-codes.netlify.app`}
