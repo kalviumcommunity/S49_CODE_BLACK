@@ -10,50 +10,46 @@
 //   console.log(`🚀 Server is running on port ${port}`);
 // });
 
-const express = require('express');
-const app = express();
-const port = 3000;
 
-const { MongoClient } = require("mongodb");
+const express = require("express");
+const mongoose = require("mongoose");
+const routes = require("./router");
 require("dotenv").config();
 
+const app = express();
+const cors = require("cors");
+app.use(cors());
+
+const port = process.env.PUBLIC_PORT || 3000;
+const mongoDbUri = process.env.MONGODB_URI;
+const UserModel = require("./Models/Coders");
+
+async function Connection() {
+  await mongoose.connect(mongoDbUri);
+  console.log("Connected to DB");
+}
+
 app.use(express.json());
+app.use("/api", routes);
 
-// MongoDB connection URL
-const uri = process.env.mongoURi;
-const client = new MongoClient(uri, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
+app.get("/ping", (req, res) => {
+  res.json({ "message" : "pong" });
 });
 
-app.get("/", async (req, res) => {
-  try {
-    // Connect to the MongoDB database
-    await client.connect();
+async function GetAll() {
+  let result = await UserModel.find();
+  return result;
+}
 
-    // Check if the connection is successful
-    if (client.topology.isConnected()) {
-      res.json({ message: "pong", database_status: "Connected" });
-      console.log("yes");
-    } else {
-      res.json({ message: "pong", database_status: "Disconnected" });
-      console.log("no");
-    }
-  } catch (error) {
-    console.error("Error connecting to the database:", error);
-    res.status(500).json({ error: "Internal Server Error" });
-  }
+app.get("/getCoders", async (req, res) => {
+  let value = await GetAll();
+  res.send({ data : value });
 });
 
-// define the ping route
-app.get('/ping',(req,res)=>{
-  res.send('pong');
-});
-
-if (require.main === module) {
+Connection().then(() => {
   app.listen(port, () => {
     console.log(`🚀 server running on PORT: ${port}`);
   });
-}
+});
 
 module.exports = app;
