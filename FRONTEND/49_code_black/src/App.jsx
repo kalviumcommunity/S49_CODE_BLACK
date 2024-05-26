@@ -50,8 +50,10 @@ const App = () => {
       .catch((error) => console.error("Error fetching data:", error));
   }, []);
 
+
   return (
 
+    
     <div className = "Coders-Place">
       {places.length > 0 ? (
         places.map((place, index) => (
