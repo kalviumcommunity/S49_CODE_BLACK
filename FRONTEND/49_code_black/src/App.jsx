@@ -85,7 +85,7 @@
 // export default App;
 
 
-
+import { Navigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
@@ -93,12 +93,16 @@ import Navbar from "./Components/Navbar";
 import Home from "./Components/Home";
 import LanguageList from "./Components/LanguageList";
 import Profile from "./Components/Profile";
+import About from "./Components/About"; 
+import Login from "./Components/Login"; 
 import "./App.css";
 
 const App = () => {
 
 
   const [places, setPlaces] = useState([]);
+  const [username, setUsername] = useState("");
+
 
   const fetchData = () => {
     axios
@@ -117,15 +121,43 @@ const App = () => {
     fetchData();
   };
 
+
+  const handleLogin = (username) => {
+    setUsername(username);
+  };
+
+  const handleLogout = () => {
+    axios.post("http://localhost:3000/api/logout")
+      .then(() => {
+        setUsername("");
+      })
+      .catch((error) => console.error("Error in Logging out:", error));
+  };
+
   return (
 
     <div className = "App-Coder">
     <Router>
-    <Navbar />
+    <Navbar username={username} onLogout={handleLogout} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/all-Languages" element={<LanguageList />} />
-        <Route path="/profile" element={<Profile onEntityAdded={handleEntityAdded} fetchData={fetchData}/>} />
+        {/* <Route path="/profile" element={<Profile onEntityAdded={handleEntityAdded} fetchData={fetchData}/>} /> */}
+        <Route
+            path="/profile"
+            element={
+              username ? (
+                <Profile
+                  onEntityAdded={handleEntityAdded}
+                  fetchData={fetchData}
+                />
+              ) : (
+                <Navigate to="/login" replace />
+              )
+            }
+          />
+          <Route path="/about" element={<About />} />
+          <Route path="/login" element={<Login onLogin={handleLogin} />} />
       </Routes>
     </Router>
     </div>

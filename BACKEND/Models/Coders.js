@@ -16,6 +16,16 @@ const UserSchema = new mongoose.Schema({
 
 const UserModel = mongoose.model("place", UserSchema);
 
+const LoginSchema = new mongoose.Schema({
+  username: String,
+  password: String,
+  emailAddress: String,
+});
+
+const LoginModel = mongoose.model("user", LoginSchema);
+
+
+
 const addEntitySchema = Joi.object({
   names: Joi.string().required(),
   founder: Joi.string().required(),
@@ -40,5 +50,17 @@ const updateEntitySchema = Joi.object({
   image: Joi.string().uri(),
 });
 
-module.exports = { UserModel, addEntitySchema, updateEntitySchema };
+const addLogin = Joi.object({
+  username: Joi.string().required(),
+  password: Joi.string().required(),
+  email: Joi.string().email().required(),
+});
+
+const signupSchema = Joi.object({
+  username: Joi.string().required(),
+  password: Joi.string().required(),
+  email: Joi.string().email().required(),
+});
+
+module.exports = { UserModel, LoginModel, addEntitySchema, updateEntitySchema, addLogin, signupSchema };
 
