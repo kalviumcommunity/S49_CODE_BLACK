@@ -37,7 +37,7 @@ const updateEntitySchema = Joi.object({
   onlinecompilerlink: Joi.string(),
   rating: Joi.string(),
   review: Joi.string(),
-  image: Joi.string(),
+  image: Joi.string().uri(),
 });
 
 module.exports = { UserModel, addEntitySchema, updateEntitySchema };

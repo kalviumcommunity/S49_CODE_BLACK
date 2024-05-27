@@ -61,14 +61,14 @@ app.post("/api/addEntity", async (req, res) => {
 app.put("/api/updateEntity/:id", async (req, res) => {
   try {
     const entityId = req.params.id;
-    const name = req.body;
+  
 
     const { error } = updateEntitySchema.validate(req.body);
 
     if (error) {
       return res.status(400).json({ success: false, message: error.details[0].message });
     }
-
+    const name = req.body;
     await UserModel.findByIdAndUpdate(entityId,  name );
 
     res.json({ success: true, message: "An Entity Updated Successfully." });
