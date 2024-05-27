@@ -7,10 +7,10 @@ const UpdateForm = ({ entityId, onEntityUpdated, fetchData }) => {
   const [founder, setFounder] = useState("");
   const [yearOfEstablishment, setYearOfEstablishment] = useState("");
   const [difficultylevel, setDifficultylevel] = useState("");
-  const [onlinecompilerlink, setOnlinecompilerlink] = useState("");
+  // const [onlinecompilerlink, setOnlinecompilerlink] = useState("");
   const [rating, setRating] = useState("");
   const [review, setReview] = useState("");
-  const [image, setImage] = useState("");
+  // const [image, setImage] = useState("");
 
   useEffect(() => {
     axios
@@ -22,10 +22,10 @@ const UpdateForm = ({ entityId, onEntityUpdated, fetchData }) => {
         setFounder(entityData.founder);
         setYearOfEstablishment(entityData.yearOfEstablishment);
         setDifficultylevel(entityData.difficultylevel);
-        setOnlinecompilerlink(entityData.onlinecompilerlink);
+        // setOnlinecompilerlink(entityData.onlinecompilerlink);
         setRating(entityData.rating);
         setReview(entityData.review);
-        setImage(entityData.image);
+        // setImage(entityData.image);
       })
       .catch((error) => console.error("Error Fetching an Entity Details:", error));
   }, [entityId]);
@@ -37,10 +37,10 @@ const UpdateForm = ({ entityId, onEntityUpdated, fetchData }) => {
         founder: founder,
         yearOfEstablishment: yearOfEstablishment,
         difficultylevel: difficultylevel,
-        onlinecompilerlink: onlinecompilerlink,
+        // onlinecompilerlink: onlinecompilerlink,
         rating: rating,
         review: review,
-        image: image,
+        // image: image,
       });
 
       if (response.data.success) {
@@ -48,10 +48,10 @@ const UpdateForm = ({ entityId, onEntityUpdated, fetchData }) => {
         setFounder("");
         setYearOfEstablishment("");
         setDifficultylevel("");
-        setOnlinecompilerlink("");
+        // setOnlinecompilerlink("");
         setRating("");
         setReview("");
-        setImage("");
+        // setImage("");
         onEntityUpdated();
         fetchData();
       } else {
@@ -77,8 +77,8 @@ const UpdateForm = ({ entityId, onEntityUpdated, fetchData }) => {
       <label>Difficulty-Level</label>
       <input type="text" value={difficultylevel} onChange={(e) => setDifficultylevel(e.target.value)} />
 
-      <label>Compiler Link:</label>
-      <input type="text" value={onlinecompilerlink} onChange={(e) => setOnlinecompilerlink(e.target.value)} />
+      {/* <label>Compiler Link:</label>
+      <input type="text" value={onlinecompilerlink} onChange={(e) => setOnlinecompilerlink(e.target.value)} /> */}
 
       <label>Rating:</label>
       <input type="text" value={rating} onChange={(e) => setRating(e.target.value)} />
