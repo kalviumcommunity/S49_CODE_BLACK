@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "./AddForm.css";
+import "../css/AddForm.css";
 
 const AddForm = ({ onEntityAdded, fetchData }) => {
   const [names, setNames] = useState("");
@@ -8,6 +8,9 @@ const AddForm = ({ onEntityAdded, fetchData }) => {
   const [yearOfEstablishment, setYearOfEstablishment] = useState("");
   const [difficultylevel, setDifficultylevel] = useState("");
   const [onlinecompilerlink, setOnlinecompilerlink] = useState("");
+  const [rating, setRating] = useState(""); 
+  const [review, setReview] = useState(""); 
+  const [image, setImage] = useState("");
 
   const handleAddEntity = async () => {
     try {
@@ -17,6 +20,9 @@ const AddForm = ({ onEntityAdded, fetchData }) => {
         yearOfEstablishment: yearOfEstablishment,
         difficultylevel: difficultylevel, 
         onlinecompilerlink: onlinecompilerlink,
+        rating: rating,
+        review: review,
+        image: image,
       });
 
       if (response.data.success) {
@@ -25,6 +31,10 @@ const AddForm = ({ onEntityAdded, fetchData }) => {
         setYearOfEstablishment("");
         setDifficultylevel("");
         setOnlinecompilerlink("");
+        setRating("");
+        setReview("");
+        setImage("");
+        console.log(response.data);
         onEntityAdded();
         fetchData(); 
       } else {
@@ -70,7 +80,28 @@ const AddForm = ({ onEntityAdded, fetchData }) => {
         onChange={(e) => setOnlinecompilerlink(e.target.value)}
       />
 
-      <button onClick={handleAddEntity}>Add Entity</button>
+      <label>Rating:</label>
+      <input
+        type="text"
+        value={rating}
+        onChange={(e) => setRating(e.target.value)}
+      />
+
+      <label>Review:</label>
+      <input
+        type="text"
+        value={review}
+        onChange={(e) => setReview(e.target.value)}
+      />
+
+      <label>Image(address):</label>
+      <input
+        type="text"
+        value={image}
+        onChange={(e) => setImage(e.target.value)}
+      />
+
+      <button id="Add-Ent" onClick={handleAddEntity}>Add Entity</button>
     </div>
   );
 };

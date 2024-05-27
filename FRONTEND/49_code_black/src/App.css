@@ -1,16 +1,16 @@
-body{
+/* body{
     justify-content: center;
     align-items: baseline;
     text-align: center;
 }
 
-/* .app-coder {
+.app-coder {
     margin: 35px;
     display: flex;
     flex-direction: row;
     justify-content: space-between; 
     gap: 90px; 
-} */
+} 
 
 .Coders-Place {
     border: 1px solid #ddd;
@@ -36,4 +36,4 @@ body{
     object-fit: cover;
     border-radius: 8px;
     margin-top: 15px;
-}
+} */
