@@ -1,0 +1,101 @@
+.App-Container {
+    margin-top: 45px;
+    display: flex;
+
+}
+
+.Language-Item-container {
+    margin-left: 290px;
+    width: 900px;
+    padding: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.Content {
+    flex: 1;
+    padding-right: 20px;
+}
+
+
+#edit{
+    margin-right: 40px;
+}
+
+#review{
+    line-height: 23px;
+}
+
+#image-container {
+    border-radius: 25px;
+    margin-left: 50px;
+    margin-top: 5px;
+    height: 350px; 
+    width: 480px;
+}
+
+.menu-popup {
+    margin-top: 10px;
+    width: 300px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    z-index: 1;
+}
+
+.menu-popup ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.menu-popup li {
+    margin-bottom: 5px;
+}
+
+.menu-popup button {
+    margin-top: 10px;
+    padding: 10px;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+}
+
+.menu-popup button.close-menu-btn {
+    background-color: #f44336;
+    color: white;
+}
+
+.popup {
+    width: 450px;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    z-index: 1;
+}
+
+.popup button {
+    margin-top: 10px;
+    padding: 10px;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+}
+
+.popup button.cancel-btn {
+    background-color: #f44336;
+    color: white;
+}

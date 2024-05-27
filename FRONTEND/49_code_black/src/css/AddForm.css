@@ -1,0 +1,39 @@
+.Add-Form {
+    width: 400px;
+    margin-top: 150px ;
+    margin-left: 557px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+  
+.Add-Form input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.Add-Form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.Add-Form button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+}
+  
+.Add-Form button:hover {
+    background-color: #45a049;
+}
