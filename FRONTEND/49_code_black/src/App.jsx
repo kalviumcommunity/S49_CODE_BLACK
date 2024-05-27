@@ -36,25 +36,34 @@
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import './App.css';
+import AddForm from "./Components/AddForm";
 
 const App = () => {
   const [places, setPlaces] = useState([]);
 
   useEffect(() => {
-    axios
-      .get("http://localhost:3000/getCoders") 
-      .then((response) => {
-        console.log("Response:", response.data.data);
-        setPlaces(response.data.data);
-      })
-      .catch((error) => console.error("Error fetching data:", error));
+    fetchData();
   }, []);
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get("http://localhost:3000/getCoders");
+      setPlaces(response.data.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  const handleEntityAdded = () => {
+    fetchData(); 
+  };
 
 
   return (
 
     
     <div className = "Coders-Place">
+      <AddForm onEntityAdded={handleEntityAdded} fetchData={fetchData} />
       {places.length > 0 ? (
         places.map((place, index) => (
           <div key = {index}>
@@ -64,7 +73,6 @@ const App = () => {
             <p>Difficulty Level: {place.difficultylevel}</p>
             <p>Description: {place.description}</p>
             <p>Compiler Link: {place.onlinecompilerlink}</p>
-            <p>{}</p>
           </div>
         ))
       ) : (
